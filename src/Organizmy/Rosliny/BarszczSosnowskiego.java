@@ -5,11 +5,12 @@ import Organizmy.Wspolrzedne;
 public class BarszczSosnowskiego implements Roslina {
     private int sila, inicjatywa, wiek;
     private Wspolrzedne polozenie;
+
     public BarszczSosnowskiego(int x, int y) {
         this.inicjatywa = 0;
         this.sila = 10;
         this.wiek = 0;
-        this.polozenie = new Wspolrzedne(x,y);
+        this.polozenie = new Wspolrzedne(x, y);
     }
 
     @Override

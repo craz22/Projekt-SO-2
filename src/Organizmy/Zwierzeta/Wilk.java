@@ -2,15 +2,17 @@ package Organizmy.Zwierzeta;
 
 import Organizmy.Wspolrzedne;
 
-public class Wilk implements Zwierze{
+public class Wilk implements Zwierze {
     private int sila, inicjatywa, wiek;
     private Wspolrzedne polozenie;
-    Wilk(int x, int y){
+
+    Wilk(int x, int y) {
         this.sila = 9;
         this.inicjatywa = 5;
         this.wiek = 0;
         this.polozenie = new Wspolrzedne(x, y);
     }
+
     @Override
     public String Rysuj() {
         return null;

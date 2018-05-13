@@ -2,14 +2,15 @@ package Organizmy.Zwierzeta;
 
 import Organizmy.Wspolrzedne;
 
-public class Antylopa implements Zwierze{
+public class Antylopa implements Zwierze {
     private int sila, inicjatywa, wiek;
     private Wspolrzedne polozenie;
-    Antylopa(int x, int y){
+
+    Antylopa(int x, int y) {
         this.sila = 4;
-        this.inicjatywa=4;
-        this.wiek=0;
-        this.polozenie = new Wspolrzedne(x,y);
+        this.inicjatywa = 4;
+        this.wiek = 0;
+        this.polozenie = new Wspolrzedne(x, y);
     }
 
     @Override

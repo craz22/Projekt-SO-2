@@ -2,14 +2,15 @@ package Organizmy.Zwierzeta;
 
 import Organizmy.Wspolrzedne;
 
-public class Czlowiek implements Zwierze{
+public class Czlowiek implements Zwierze {
     private int sila, inicjatywa, wiek;
     private Wspolrzedne polozenie;
-    Czlowiek(int x, int y){
+
+    Czlowiek(int x, int y) {
         this.sila = 5;
         this.inicjatywa = 4;
         this.wiek = 0;
-        this.polozenie = new Wspolrzedne(x,y);
+        this.polozenie = new Wspolrzedne(x, y);
     }
 
     @Override

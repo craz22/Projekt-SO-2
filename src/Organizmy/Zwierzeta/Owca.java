@@ -2,14 +2,15 @@ package Organizmy.Zwierzeta;
 
 import Organizmy.Wspolrzedne;
 
-public class Owca implements Zwierze{
+public class Owca implements Zwierze {
     private int sila, inicjatywa, wiek;
     private Wspolrzedne polozenie;
-    Owca(int x, int y){
+
+    Owca(int x, int y) {
         this.sila = 4;
         this.inicjatywa = 4;
         this.wiek = 0;
-        this.polozenie = new Wspolrzedne(x,y);
+        this.polozenie = new Wspolrzedne(x, y);
     }
 
     @Override
@@ -49,5 +50,15 @@ public class Owca implements Zwierze{
 
     public void setWiek(int wiek) {
         this.wiek = wiek;
+    }
+
+    @Override
+    public Wspolrzedne getPolozenie() {
+        return null;
+    }
+
+    @Override
+    public void setPolozenie(Wspolrzedne polozenie) {
+
     }
 }

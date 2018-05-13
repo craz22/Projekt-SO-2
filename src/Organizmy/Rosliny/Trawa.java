@@ -2,14 +2,15 @@ package Organizmy.Rosliny;
 
 import Organizmy.Wspolrzedne;
 
-public class Trawa implements Roslina{
+public class Trawa implements Roslina {
     private int sila, inicjatywa, wiek;
     private Wspolrzedne polozenie;
+
     public Trawa(int x, int y) {
         this.sila = 0;
         this.inicjatywa = 0;
         this.wiek = 0;
-        this.polozenie = new Wspolrzedne(x,y);
+        this.polozenie = new Wspolrzedne(x, y);
     }
 
     @Override

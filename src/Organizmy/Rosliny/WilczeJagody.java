@@ -5,11 +5,12 @@ import Organizmy.Wspolrzedne;
 public class WilczeJagody implements Roslina {
     private int sila, inicjatywa, wiek;
     private Wspolrzedne polozenie;
+
     WilczeJagody(int x, int y) {
         this.sila = 99;
         this.inicjatywa = 0;
         this.wiek = 0;
-        this.polozenie = new Wspolrzedne(x,y);
+        this.polozenie = new Wspolrzedne(x, y);
     }
 
     @Override

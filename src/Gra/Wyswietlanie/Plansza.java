@@ -1,9 +1,9 @@
 package Gra.Wyswietlanie;
 
+import Gra.Swiat;
+
 import javax.swing.*;
 import java.awt.*;
-
-import Gra.Swiat;
 
 class Plansza extends JPanel {
     private int x, y;

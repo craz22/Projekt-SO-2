@@ -1,18 +1,17 @@
 package Gra.Wyswietlanie;
 
-import javax.swing.*;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
-import javax.swing.text.*;
-
 import Gra.Swiat;
 
+import javax.swing.*;
+import javax.swing.text.*;
 import java.awt.*;
 
 class Menu extends JPanel {
     private int y;
     private JPanel menu;
     private JScrollPane scrollPane;
+    private JLabel kierunek;
+
     Menu(Swiat swiat, Gra gra) {
         menu = new JPanel();
         menu.setBorder(BorderFactory.createTitledBorder("Menu"));
@@ -54,7 +53,7 @@ class Menu extends JPanel {
 
         JLabel kierunekLabael = new JLabel("Kierunek:");
         kierunekLabael.setAlignmentX(CENTER_ALIGNMENT);
-        JLabel kierunek = new JLabel(swiat.getKierunek());
+        kierunek = new JLabel(swiat.getKierunek());
         kierunek.setAlignmentX(CENTER_ALIGNMENT);
         menu.add(rozmiar);
         menu.add(spinnerX);
@@ -65,15 +64,19 @@ class Menu extends JPanel {
         menu.add(scrollPane);
     }
 
+    void setKierunek(Swiat swiat) {
+        this.kierunek.setText(swiat.getKierunek());
+    }
+
     JPanel getPanel() {
         return menu;
     }
 
-    void setKomentarze(Swiat swiat){
+    void setKomentarze(Swiat swiat) {
         this.scrollPane = WypiszKomentarze(swiat);
     }
 
-    private JScrollPane WypiszKomentarze(Swiat swiat){
+    private JScrollPane WypiszKomentarze(Swiat swiat) {
         StyleContext context = new StyleContext();
         StyledDocument document = new DefaultStyledDocument(context);
 
@@ -86,10 +89,10 @@ class Menu extends JPanel {
         SimpleAttributeSet attributes = new SimpleAttributeSet();
         StyleConstants.setBold(attributes, true);
         StyleConstants.setItalic(attributes, true);
-        if(!swiat.getKomentarze().isEmpty()){
-            for (String komentarz:swiat.getKomentarze()) {
+        if (!swiat.getKomentarze().isEmpty()) {
+            for (String komentarz : swiat.getKomentarze()) {
                 try {
-                    document.insertString(document.getLength(), komentarz+"\n", attributes);
+                    document.insertString(document.getLength(), komentarz + "\n", attributes);
                 } catch (BadLocationException e) {
                     e.printStackTrace();
                 }

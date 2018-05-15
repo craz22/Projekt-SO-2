@@ -31,7 +31,7 @@ public class Zolw implements Zwierze {
     public void Kolizja(Swiat swiat, Organizm atakujacy) {
         //sprawdzenie czy odbije atak
         if (atakujacy.getSila() > 5) {
-            Zwierze.super.Kolizja(swiat,atakujacy);
+            Zwierze.super.Kolizja(swiat, atakujacy);
         }
     }
 

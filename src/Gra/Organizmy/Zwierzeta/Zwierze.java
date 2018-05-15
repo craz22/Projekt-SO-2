@@ -6,7 +6,6 @@ import Gra.Swiat;
 
 import java.awt.*;
 import java.util.Random;
-import java.util.Vector;
 
 public interface Zwierze extends Organizm {
     @Override

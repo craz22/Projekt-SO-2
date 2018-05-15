@@ -34,6 +34,7 @@ public class BarszczSosnowskiego implements Roslina {
         Vector<Wspolrzedne> tablica = new Vector<>();
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
+                //noinspection StatementWithEmptyBody
                 if (i == 1 && j == 1) ;
                 else {
                     if (getPolozenie().getY() + 1 - i >= 0
@@ -59,6 +60,8 @@ public class BarszczSosnowskiego implements Roslina {
         //zabicie organizmow dookola
         if (!tablica.isEmpty()) {
             for (Wspolrzedne wsp : tablica) {
+                String komentarz = "Barszcz Sosnowskiego zabil " + swiat.getOrganizm(wsp.getY(), wsp.getX()).getClass().getSimpleName();
+                swiat.addKomentarz(komentarz);
                 swiat.zabij(swiat.getOrganizm(wsp.getY(), wsp.getX()));
             }
         }
@@ -71,6 +74,8 @@ public class BarszczSosnowskiego implements Roslina {
 
     @Override
     public void Kolizja(Swiat swiat, Organizm atakujacy) {
+        String komentarz = atakujacy.getClass().getSimpleName() + " zjadl Barszcz Sosnowskiego";
+        swiat.addKomentarz(komentarz);
         Roslina.super.Kolizja(swiat, atakujacy);
         swiat.zabij(this);
     }

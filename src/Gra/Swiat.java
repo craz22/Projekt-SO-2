@@ -13,6 +13,7 @@ public class Swiat {
     private Vector<Organizm> organizmy = new Vector<>();
     private int[][] pole;
     private Czlowiek czlowiek;
+    private Vector<String> komentarze = new Vector<>();
 
     public Swiat(int x, int y) {
         this.x = x;
@@ -46,6 +47,14 @@ public class Swiat {
     public void setX(int x) {
         this.x = x;
         randOrganizm(this);
+    }
+
+    public Vector<String> getKomentarze() {
+        return komentarze;
+    }
+
+    public void addKomentarz(String komentarz) {
+        this.komentarze.add(komentarz);
     }
 
     public int getY() {

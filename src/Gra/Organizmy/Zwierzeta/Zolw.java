@@ -31,13 +31,7 @@ public class Zolw implements Zwierze {
     public void Kolizja(Swiat swiat, Organizm atakujacy) {
         //sprawdzenie czy odbije atak
         if (atakujacy.getSila() > 5) {
-            //sprawdzenie kto ma wieksza sile
-            if (atakujacy.getSila() >= getSila()) {
-                swiat.zabij(this);
-                swiat.moveOrganizm(atakujacy, getPolozenie().getY(), getPolozenie().getX());
-            } else {
-                swiat.zabij(atakujacy);
-            }
+            Zwierze.super.Kolizja(swiat,atakujacy);
         }
     }
 

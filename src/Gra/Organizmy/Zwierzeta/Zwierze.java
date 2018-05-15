@@ -14,13 +14,20 @@ public interface Zwierze extends Organizm {
 
     @Override
     default void Kolizja(Swiat swiat, Organizm atakujacy) {
+        String komentarz;
+        //sprawdzenie czy ten sam gatunek
+        //TODO
+
         //sprawdzenie kto ma wieksza sile
         if (atakujacy.getSila() >= getSila()) {
+            komentarz = atakujacy.getClass().getSimpleName() + " zabil " + this.getClass().getSimpleName();
             swiat.zabij(this);
             swiat.moveOrganizm(atakujacy, getPolozenie().getY(), getPolozenie().getX());
         } else {
+            komentarz = this.getClass().getSimpleName() + " zabil " + atakujacy.getClass().getSimpleName();
             swiat.zabij(atakujacy);
         }
+        swiat.addKomentarz(komentarz);
     }
 
     @Override

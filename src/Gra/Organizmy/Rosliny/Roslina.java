@@ -19,6 +19,7 @@ public interface Roslina extends Organizm {
         Vector<Wspolrzedne> tablica = new Vector<>();
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
+                //noinspection StatementWithEmptyBody
                 if (i == 1 && j == 1) ;
                 else {
                     if (getPolozenie().getY() + 1 - i >= 0
@@ -79,9 +80,13 @@ public interface Roslina extends Organizm {
     @Override
     default void Kolizja(Swiat swiat, Organizm atakujacy) {
         if (atakujacy.getSila() >= getSila()) {
+            String komentarz = atakujacy.getClass().getSimpleName() + " zabil " + this.getClass().getSimpleName();
+            swiat.addKomentarz(komentarz);
             swiat.zabij(this);
             swiat.moveOrganizm(atakujacy, getPolozenie().getY(), getPolozenie().getX());
         } else {
+            String komentarz = this.getClass().getSimpleName() + " zabil " + atakujacy.getClass().getSimpleName();
+            swiat.addKomentarz(komentarz);
             swiat.zabij(atakujacy);
         }
     }

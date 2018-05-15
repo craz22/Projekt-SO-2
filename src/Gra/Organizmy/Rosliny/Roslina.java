@@ -69,6 +69,8 @@ public interface Roslina extends Organizm {
                         break;
                     }
                 }
+                String komentarz = "Urodzil sie " + org.getClass().getSimpleName();
+                swiat.addKomentarz(komentarz);
                 swiat.addOrganizm(org);
             }
         }

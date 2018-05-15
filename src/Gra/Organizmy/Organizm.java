@@ -1,11 +1,13 @@
 package Gra.Organizmy;
 
+import Gra.Swiat;
+
 import java.awt.*;
 
 public interface Organizm {
-    void Akcja();
+    void Akcja(Swiat swiat);
 
-    void Kolizja();
+    void Kolizja(Swiat swiat, Organizm atakujacy);
 
     String Rysuj();
 
@@ -20,6 +22,10 @@ public interface Organizm {
     int getWiek();
 
     void setWiek(int wiek);
+
+    Color getColor();
+
+    void setColor(Color color);
 
     Wspolrzedne getPolozenie();
 

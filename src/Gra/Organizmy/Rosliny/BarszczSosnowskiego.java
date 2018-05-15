@@ -1,24 +1,67 @@
 package Gra.Organizmy.Rosliny;
 
 
+import Gra.Organizmy.Organizm;
 import Gra.Organizmy.Wspolrzedne;
+import Gra.Organizmy.Zwierzeta.Zwierze;
 import Gra.Swiat;
+
+import java.awt.*;
+import java.util.Random;
+import java.util.Vector;
 
 public class BarszczSosnowskiego implements Roslina {
     private int sila, inicjatywa, wiek;
     private Wspolrzedne polozenie;
     private Swiat swiat;
-    public BarszczSosnowskiego(Swiat swiat,int x, int y) {
+    private Color color;
+
+    public BarszczSosnowskiego(Swiat swiat, int x, int y) {
         this.inicjatywa = 0;
         this.sila = 10;
         this.wiek = 0;
         this.polozenie = new Wspolrzedne(x, y);
         this.swiat = swiat;
+        this.color = Color.RED;
     }
 
+    @SuppressWarnings("Duplicates")
     @Override
-    public void Akcja() {
+    public void Akcja(Swiat swiat) {
+        Random generator = new Random();
+        int los;
+        //szukanie zwierzat dookola
+        Vector<Wspolrzedne> tablica = new Vector<>();
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                if (i == 1 && j == 1) ;
+                else {
+                    if (getPolozenie().getY() + 1 - i >= 0
+                            && getPolozenie().getY() + 1 - i <= swiat.getY() - 1
+                            && getPolozenie().getX() + 1 - j >= 0
+                            && getPolozenie().getX() + 1 - j <= swiat.getX() - 1) {
+                        //jesli jest zwierzeciem
+                        Class<?> interf = Zwierze.class;
 
+                        Class<?> obj = swiat.getOrganizm(getPolozenie().getY() + 1 - i,
+                                getPolozenie().getX() + 1 - j)
+                                .getClass();
+
+                        if (interf.isAssignableFrom(obj)) {
+                            tablica.add(new Wspolrzedne(getPolozenie().getX() + 1 - j,
+                                    getPolozenie().getY() + 1 - i)
+                            );
+                        }
+                    }
+                }
+            }
+        }
+        //zabicie organizmow dookola
+        if (!tablica.isEmpty()) {
+            for (Wspolrzedne wsp : tablica) {
+                swiat.zabij(swiat.getOrganizm(wsp.getY(), wsp.getX()));
+            }
+        }
     }
 
     @Override
@@ -27,8 +70,27 @@ public class BarszczSosnowskiego implements Roslina {
     }
 
     @Override
-    public void Kolizja() {
+    public void Kolizja(Swiat swiat, Organizm atakujacy) {
+        Roslina.super.Kolizja(swiat, atakujacy);
+        swiat.zabij(this);
+    }
 
+    public Swiat getSwiat() {
+        return swiat;
+    }
+
+    public void setSwiat(Swiat swiat) {
+        this.swiat = swiat;
+    }
+
+    @Override
+    public Color getColor() {
+        return color;
+    }
+
+    @Override
+    public void setColor(Color color) {
+        this.color = color;
     }
 
     public int getSila() {

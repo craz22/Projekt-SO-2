@@ -1,19 +1,25 @@
 package Gra.Organizmy.Zwierzeta;
 
 
+import Gra.Organizmy.Organizm;
 import Gra.Organizmy.Wspolrzedne;
 import Gra.Swiat;
+
+import java.awt.*;
 
 public class Czlowiek implements Zwierze {
     private int sila, inicjatywa, wiek;
     private Wspolrzedne polozenie;
     private Swiat swiat;
+    private Color color;
+
     public Czlowiek(Swiat swiat, int x, int y) {
         this.sila = 5;
         this.inicjatywa = 4;
         this.wiek = 0;
         this.polozenie = new Wspolrzedne(x, y);
         this.swiat = swiat;
+        this.color = Color.WHITE;
     }
 
     @Override
@@ -22,13 +28,23 @@ public class Czlowiek implements Zwierze {
     }
 
     @Override
-    public void Kolizja() {
-
+    public void Kolizja(Swiat swiat, Organizm atakujacy) {
+        Zwierze.super.Kolizja(swiat, atakujacy);
     }
 
     @Override
-    public void Akcja() {
+    public void Akcja(Swiat swiat) {
+        //TODO
+    }
 
+    @Override
+    public Color getColor() {
+        return color;
+    }
+
+    @Override
+    public void setColor(Color color) {
+        this.color = color;
     }
 
     public int getSila() {

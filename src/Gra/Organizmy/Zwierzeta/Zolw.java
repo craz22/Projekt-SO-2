@@ -1,18 +1,25 @@
 package Gra.Organizmy.Zwierzeta;
 
+import Gra.Organizmy.Organizm;
 import Gra.Organizmy.Wspolrzedne;
 import Gra.Swiat;
+
+import java.awt.*;
+import java.util.Random;
 
 public class Zolw implements Zwierze {
     private int sila, inicjatywa, wiek;
     private Wspolrzedne polozenie;
     private Swiat swiat;
+    private Color color;
+
     public Zolw(Swiat swiat, int x, int y) {
         this.sila = 2;
         this.inicjatywa = 1;
         this.wiek = 0;
         this.polozenie = new Wspolrzedne(x, y);
         this.swiat = swiat;
+        this.color = Color.DARK_GRAY;
     }
 
     @Override
@@ -21,13 +28,36 @@ public class Zolw implements Zwierze {
     }
 
     @Override
-    public void Kolizja() {
-
+    public void Kolizja(Swiat swiat, Organizm atakujacy) {
+        //sprawdzenie czy odbije atak
+        if (atakujacy.getSila() > 5) {
+            //sprawdzenie kto ma wieksza sile
+            if (atakujacy.getSila() >= getSila()) {
+                swiat.zabij(this);
+                swiat.moveOrganizm(atakujacy, getPolozenie().getY(), getPolozenie().getX());
+            } else {
+                swiat.zabij(atakujacy);
+            }
+        }
     }
 
     @Override
-    public void Akcja() {
+    public void Akcja(Swiat swiat) {
+        Random generator = new Random();
+        int los = generator.nextInt(4);
+        if (los == 0) {
+            Zwierze.super.Akcja(swiat);
+        }
+    }
 
+    @Override
+    public Color getColor() {
+        return color;
+    }
+
+    @Override
+    public void setColor(Color color) {
+        this.color = color;
     }
 
     @Override

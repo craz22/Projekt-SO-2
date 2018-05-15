@@ -1,24 +1,30 @@
 package Gra.Organizmy.Rosliny;
 
 
+import Gra.Organizmy.Organizm;
 import Gra.Organizmy.Wspolrzedne;
 import Gra.Swiat;
+
+import java.awt.*;
 
 public class Guarana implements Roslina {
     private int sila, inicjatywa, wiek;
     private Wspolrzedne polozenie;
     private Swiat swiat;
+    private Color color;
+
     public Guarana(Swiat swiat, int x, int y) {
         this.sila = 0;
         this.inicjatywa = 0;
         this.wiek = 0;
         this.polozenie = new Wspolrzedne(x, y);
         this.swiat = swiat;
+        this.color = Color.MAGENTA;
     }
 
     @Override
-    public void Akcja() {
-
+    public void Akcja(Swiat swiat) {
+        Roslina.super.Akcja(swiat);
     }
 
     @Override
@@ -27,8 +33,19 @@ public class Guarana implements Roslina {
     }
 
     @Override
-    public void Kolizja() {
+    public void Kolizja(Swiat swiat, Organizm atakujacy) {
+        Roslina.super.Kolizja(swiat, atakujacy);
+        atakujacy.setSila(atakujacy.getSila() + 3);
+    }
 
+    @Override
+    public Color getColor() {
+        return color;
+    }
+
+    @Override
+    public void setColor(Color color) {
+        this.color = color;
     }
 
     public int getSila() {

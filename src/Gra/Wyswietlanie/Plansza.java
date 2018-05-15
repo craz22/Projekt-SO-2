@@ -2,37 +2,59 @@ package Gra.Wyswietlanie;
 
 import javax.swing.*;
 import java.awt.*;
+
 import Gra.Swiat;
 
 class Plansza extends JPanel {
     private int x, y;
     private JPanel plansza;
+    private JButton[][] buttons;
 
-    Plansza(Swiat swiat, int x, int y) {
+    Plansza(Swiat swiat, Gra gra, int x, int y) {
         this.x = x;
         this.y = y;
-        plansza = new JPanel();
-        plansza.setBorder(BorderFactory.createTitledBorder("Plansza"));
-        GridLayout gridLayout = new GridLayout(y, x);
-        plansza.setLayout(gridLayout);
-        for (int i = 0; i < y; i++) {
-            for (int j=0; j<x; j++){
-                JButton b;
-                if(swiat.getOrganizm(i,j) == null){
-                    b = new JButton();
-                }
-                else{
-                    b = new JButton(swiat.getOrganizm(i,j).Rysuj());
-                }
-                b.setBackground(Color.WHITE);
-                b.setMinimumSize(new Dimension(50, 50));
-                b.setPreferredSize(new Dimension(50, 50));
-                plansza.add(b);
-            }
-        }
+        plansza = setPlansza(swiat);
     }
 
     JPanel getPanel() {
         return plansza;
+    }
+
+    void setPanel(JPanel panel) {
+        this.plansza = panel;
+    }
+
+    private JPanel setPlansza(Swiat swiat) {
+        this.x = swiat.getX();
+        this.y = swiat.getY();
+        JPanel plansza = new JPanel();
+        plansza.setBorder(BorderFactory.createTitledBorder("Plansza"));
+        GridLayout gridLayout = new GridLayout(y, x);
+        plansza.setLayout(gridLayout);
+        buttons = new JButton[swiat.getY()][swiat.getX()];
+        for (int i = 0; i < swiat.getY(); i++) {
+            for (int j = 0; j < swiat.getX(); j++) {
+                buttons[i][j] = new JButton();
+                buttons[i][j].setBackground(Color.WHITE);
+                buttons[i][j].setMinimumSize(new Dimension(60, 60));
+                buttons[i][j].setPreferredSize(new Dimension(60, 60));
+                plansza.add(buttons[i][j]);
+            }
+        }
+        return plansza;
+    }
+
+    void RysujPlansze(Swiat swiat) {
+        for (int i = 0; i < y; i++) {
+            for (int j = 0; j < x; j++) {
+                if (swiat.getOrganizm(i, j) == null) {
+                    buttons[i][j].setText("");
+                } else {
+                    buttons[i][j].setText(swiat.getOrganizm(i, j).Rysuj());
+                    buttons[i][j].setBackground(swiat.getOrganizm(i, j).getColor());
+                }
+
+            }
+        }
     }
 }

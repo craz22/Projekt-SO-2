@@ -7,6 +7,7 @@ import Gra.Swiat;
 
 public class Gra extends JFrame {
     private Plansza plansza;
+    private Menu menu;
     private JFrame f;
 
     public Gra(Swiat swiat) {
@@ -14,7 +15,9 @@ public class Gra extends JFrame {
         f = new JFrame("Gerard Wiśniewski s174297");
         f.setLayout(borderLayout);
         plansza = new Plansza(swiat, this, swiat.getX(), swiat.getY());
-        Menu menu = new Menu(swiat, this);
+        menu = new Menu(swiat, this);
+        Dimension rozmiarMenu = new Dimension(250,f.getHeight());
+        menu.getPanel().setPreferredSize(rozmiarMenu);
         f.add(menu.getPanel(), BorderLayout.EAST);
         f.add(plansza.getPanel(), BorderLayout.CENTER);
         plansza.RysujPlansze(swiat);
@@ -30,6 +33,12 @@ public class Gra extends JFrame {
         this.plansza = new Plansza(swiat, this, swiat.getX(), swiat.getY());
         f.add(plansza.getPanel(), BorderLayout.CENTER);
         plansza.RysujPlansze(swiat);
+        f.revalidate();
+        f.repaint();
+    }
+
+    void wypiszKomentarze(Swiat swiat){
+        this.menu.setKomentarze(swiat);
         f.revalidate();
         f.repaint();
     }

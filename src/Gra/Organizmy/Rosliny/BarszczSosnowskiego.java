@@ -65,6 +65,8 @@ public class BarszczSosnowskiego implements Roslina {
                 swiat.zabij(swiat.getOrganizm(wsp.getY(), wsp.getX()));
             }
         }
+        //rozprzestrzenianie sie
+        Roslina.super.Akcja(swiat);
     }
 
     @Override

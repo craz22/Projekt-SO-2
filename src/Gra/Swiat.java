@@ -25,7 +25,7 @@ public class Swiat {
         randOrganizm(this);
     }
 
-    //TODO czlowiek umiejetnosc specjalna, czlowiek poruasznie sie, przeprowadzanie tur
+    //TODO czlowiek umiejetnosc specjalna, czlowiek poruasznie sie, przeprowadzanie tur, sprawdzenie czy wszedzie sa komentarze
 
     public Czlowiek getCzlowiek() {
         return czlowiek;

@@ -29,9 +29,17 @@ public class Zolw implements Zwierze {
 
     @Override
     public void Kolizja(Swiat swiat, Organizm atakujacy) {
-        //sprawdzenie czy odbije atak
-        if (atakujacy.getSila() > 5) {
+        //sprawdzenie czy jest tego samego gatunku
+        if (atakujacy.getClass().getSimpleName().equals(getClass().getSimpleName())) {
             Zwierze.super.Kolizja(swiat, atakujacy);
+        } else {
+            //sprawdzenie czy odbije atak
+            if (atakujacy.getSila() > 5) {
+                Zwierze.super.Kolizja(swiat, atakujacy);
+            } else {
+                String komentarz = "Zolw odbil atak " + atakujacy.getClass().getSimpleName();
+                swiat.addKomentarz(komentarz);
+            }
         }
     }
 

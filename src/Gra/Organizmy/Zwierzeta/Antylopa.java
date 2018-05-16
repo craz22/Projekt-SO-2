@@ -32,57 +32,52 @@ public class Antylopa implements Zwierze {
     @SuppressWarnings("Duplicates")
     @Override
     public void Kolizja(Swiat swiat, Organizm atakujacy) {
-        //wylosowanie czy ucieknie
         Random generator = new Random();
         String komentarz;
-        int los = generator.nextInt(2);
-        if (los == 0) {
-            //szukanie wolnych miejsc
-            Vector<Wspolrzedne> tablica = new Vector<>();
-            for (int i = 0; i < 3; i++) {
-                for (int j = 0; j < 3; j++) {
-                    //noinspection StatementWithEmptyBody
-                    if (i == 1 && j == 1) ;
-                    else {
-                        if (getPolozenie().getY() + 1 - i >= 0
-                                && getPolozenie().getY() + 1 - i <= swiat.getY() - 1
-                                && getPolozenie().getX() + 1 - j >= 0
-                                && getPolozenie().getX() + 1 - j <= swiat.getX() - 1) {
-                            //jesli jest puste
-                            if (swiat.getOrganizm(getPolozenie().getY() + 1 - i, getPolozenie().getX() + 1 - j) == null) {
-                                tablica.add(new Wspolrzedne(getPolozenie().getX() + 1 - j, getPolozenie().getY() + 1 - i));
+        //jesli jest tego samego gatunku
+        if (atakujacy.getClass().getSimpleName().equals(getClass().getSimpleName())) {
+            Zwierze.super.Kolizja(swiat, atakujacy);
+        }
+        //jesli nie jest
+        else {
+            //wylosowanie czy ucieknie
+            int los = generator.nextInt(2);
+            //jesli ucieknie
+            if (los == 0) {
+                //szukanie wolnych miejsc
+                Vector<Wspolrzedne> tablica = new Vector<>();
+                for (int i = 0; i < 3; i++) {
+                    for (int j = 0; j < 3; j++) {
+                        //noinspection StatementWithEmptyBody
+                        if (i == 1 && j == 1) ;
+                        else {
+                            if (getPolozenie().getY() + 1 - i >= 0
+                                    && getPolozenie().getY() + 1 - i <= swiat.getY() - 1
+                                    && getPolozenie().getX() + 1 - j >= 0
+                                    && getPolozenie().getX() + 1 - j <= swiat.getX() - 1) {
+                                //jesli jest puste
+                                if (swiat.getOrganizm(getPolozenie().getY() + 1 - i, getPolozenie().getX() + 1 - j) == null) {
+                                    tablica.add(new Wspolrzedne(getPolozenie().getX() + 1 - j, getPolozenie().getY() + 1 - i));
+                                }
                             }
                         }
                     }
                 }
-            }
-            //wylosowanie wspolrzednych
-            if (!tablica.isEmpty()) {
-                los = generator.nextInt(tablica.size());
-                swiat.moveOrganizm(this, tablica.elementAt(los).getY(), tablica.elementAt(los).getX());
-            }
-            //jesli nie ma wolnych miejsc
-            else {
-                if (atakujacy.getSila() >= getSila()) {
-                    komentarz = atakujacy.getClass().getSimpleName() + " zabil Antylope";
-                    swiat.zabij(this);
-                    swiat.moveOrganizm(atakujacy, getPolozenie().getY(), getPolozenie().getX());
-                } else {
-                    komentarz = "Antylopa zabila " + atakujacy.getClass().getSimpleName();
-                    swiat.zabij(atakujacy);
+                //wylosowanie wspolrzednych
+                if (!tablica.isEmpty()) {
+                    los = generator.nextInt(tablica.size());
+                    swiat.moveOrganizm(this, tablica.elementAt(los).getY(), tablica.elementAt(los).getX());
+                    String komentarz2 = "Antylopa uciekla przed " + atakujacy.getClass().getSimpleName();
+                    swiat.addKomentarz(komentarz2);
                 }
-                swiat.addKomentarz(komentarz);
-            }
-        } else {
-            if (atakujacy.getSila() >= getSila()) {
-                komentarz = atakujacy.getClass().getSimpleName() + " zabil Antylope";
-                swiat.zabij(this);
-                swiat.moveOrganizm(atakujacy, getPolozenie().getY(), getPolozenie().getX());
+                //jesli nie ma wolnych miejsc
+                else {
+                    Zwierze.super.Kolizja(swiat, atakujacy);
+                }
+                //jesli nie ucieknie
             } else {
-                komentarz = "Antylopa zabila " + atakujacy.getClass().getSimpleName();
-                swiat.zabij(atakujacy);
+                Zwierze.super.Kolizja(swiat, atakujacy);
             }
-            swiat.addKomentarz(komentarz);
         }
     }
 

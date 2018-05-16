@@ -35,7 +35,7 @@ public class WilczeJagody implements Roslina {
     @Override
     public void Kolizja(Swiat swiat, Organizm atakujacy) {
         Roslina.super.Kolizja(swiat, atakujacy);
-        String komentarz = atakujacy.getClass().getSimpleName() + " zjadl Guarane";
+        String komentarz = atakujacy.getClass().getSimpleName() + " zjadl WilczeJagody";
         swiat.addKomentarz(komentarz);
         swiat.zabij(this);
     }

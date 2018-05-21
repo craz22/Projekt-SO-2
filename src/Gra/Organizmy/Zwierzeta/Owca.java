@@ -78,6 +78,6 @@ public class Owca implements Zwierze {
 
     @Override
     public void setPolozenie(Wspolrzedne polozenie) {
-
+        this.polozenie = polozenie;
     }
 }

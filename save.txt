@@ -1,103 +1,185 @@
-14 10
+17 16
 Czlowiek
-2 3 4 5 0
+12 8 4 5 0
+Czlowiek
+12 8 4 5 0
 BarszczSosnowskiego
-10 2 0 10 0
+1 0 0 10 0
 BarszczSosnowskiego
-10 7 0 10 0
+9 1 0 10 0
 BarszczSosnowskiego
-2 4 0 10 0
+11 1 0 10 0
 BarszczSosnowskiego
-8 1 0 10 0
+7 1 0 10 0
 BarszczSosnowskiego
-13 3 0 10 0
+5 9 0 10 0
+BarszczSosnowskiego
+12 4 0 10 0
+BarszczSosnowskiego
+14 15 0 10 0
+BarszczSosnowskiego
+0 7 0 10 0
+BarszczSosnowskiego
+12 10 0 10 0
 Guarana
-6 4 0 0 0
+15 4 0 0 0
 Guarana
-8 6 0 0 0
+15 8 0 0 0
 Guarana
-10 3 0 0 0
+12 5 0 0 0
 Guarana
-4 1 0 0 0
+3 12 0 0 0
 Guarana
-12 2 0 0 0
+13 6 0 0 0
+Guarana
+15 12 0 0 0
+Guarana
+12 9 0 0 0
+Guarana
+6 10 0 0 0
+Guarana
+1 6 0 0 0
 Mlecz
-8 5 0 0 0
+10 10 0 0 0
 Mlecz
-3 1 0 0 0
+3 5 0 0 0
 Mlecz
-10 1 0 0 0
+14 6 0 0 0
 Mlecz
-11 9 0 0 0
+0 12 0 0 0
 Mlecz
-5 9 0 0 0
+9 3 0 0 0
+Mlecz
+13 2 0 0 0
+Mlecz
+7 14 0 0 0
+Mlecz
+5 10 0 0 0
+Mlecz
+1 7 0 0 0
+Trawa
+5 5 0 0 0
+Trawa
+14 13 0 0 0
+Trawa
+13 5 0 0 0
+Trawa
+16 13 0 0 0
 Trawa
 3 4 0 0 0
 Trawa
-0 4 0 0 0
+0 15 0 0 0
 Trawa
-0 3 0 0 0
+8 11 0 0 0
 Trawa
-1 4 0 0 0
+13 8 0 0 0
 Trawa
-7 7 0 0 0
+9 14 0 0 0
 WilczeJagody
-3 7 0 99 0
+11 11 0 99 0
 WilczeJagody
-9 8 0 99 0
+12 2 0 99 0
 WilczeJagody
-5 2 0 99 0
+16 1 0 99 0
 WilczeJagody
-7 6 0 99 0
+15 0 0 99 0
 WilczeJagody
-7 8 0 99 0
+3 1 0 99 0
+WilczeJagody
+9 13 0 99 0
+WilczeJagody
+14 3 0 99 0
+WilczeJagody
+14 8 0 99 0
+WilczeJagody
+14 5 0 99 0
 Antylopa
-0 7 4 4 0
+13 10 4 4 0
 Antylopa
-5 8 4 4 0
+16 6 4 4 0
 Antylopa
-0 5 4 4 0
+10 14 4 4 0
 Antylopa
-11 6 4 4 0
+9 6 4 4 0
 Antylopa
-7 0 4 4 0
+7 6 4 4 0
+Antylopa
+13 14 4 4 0
+Antylopa
+15 7 4 4 0
+Antylopa
+13 1 4 4 0
+Antylopa
+10 6 4 4 0
 Lis
-1 2 7 3 0
+15 9 7 3 0
 Lis
-13 5 7 3 0
+7 7 7 3 0
 Lis
-6 9 7 3 0
+0 3 7 3 0
 Lis
-6 3 7 3 0
+2 10 7 3 0
 Lis
-1 0 7 3 0
+9 10 7 3 0
+Lis
+15 10 7 3 0
+Lis
+11 5 7 3 0
+Lis
+6 11 7 3 0
+Lis
+1 8 7 3 0
 Owca
-6 1 4 4 0
+4 6 4 4 0
 Owca
-13 6 4 4 0
+16 5 4 4 0
 Owca
-1 1 4 4 0
+7 13 4 4 0
 Owca
 5 1 4 4 0
 Owca
-2 6 4 4 0
+16 10 4 4 0
+Owca
+16 14 4 4 0
+Owca
+4 9 4 4 0
+Owca
+10 8 4 4 0
+Owca
+14 11 4 4 0
 Wilk
-0 6 5 9 0
+1 9 5 9 0
 Wilk
-2 8 5 9 0
+1 15 5 9 0
 Wilk
-9 2 5 9 0
+13 3 5 9 0
 Wilk
-7 4 5 9 0
+15 2 5 9 0
 Wilk
-4 2 5 9 0
+2 9 5 9 0
+Wilk
+12 0 5 9 0
+Wilk
+8 13 5 9 0
+Wilk
+6 2 5 9 0
+Wilk
+0 5 5 9 0
 Zolw
-1 6 1 2 0
+16 0 1 2 0
+Zolw
+4 5 1 2 0
+Zolw
+15 5 1 2 0
 Zolw
 4 8 1 2 0
 Zolw
-13 4 1 2 0
+2 11 1 2 0
 Zolw
-8 9 1 2 0
+5 6 1 2 0
 Zolw
-0 2 1 2 0
+6 4 1 2 0
+Zolw
+7 11 1 2 0
+Zolw
+6 7 1 2 0

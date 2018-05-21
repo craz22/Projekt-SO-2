@@ -39,10 +39,6 @@ public class Swiat {
         this.licznikspecjalny = licznikspecjalny;
     }
 
-    public Czlowiek getCzlowiek() {
-        return czlowiek;
-    }
-
     private void setCzlowiek(Czlowiek czlowiek) {
         this.czlowiek = czlowiek;
         addOrganizm(this.czlowiek);
@@ -80,10 +76,6 @@ public class Swiat {
     public void setY(int y) {
         this.y = y;
         randOrganizm(this);
-    }
-
-    public int getPole(int y, int x) {
-        return pole[y][x];
     }
 
     private void setPole(int y, int x, int ID) {

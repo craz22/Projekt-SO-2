@@ -24,6 +24,10 @@ class Plansza extends JPanel {
         this.plansza = panel;
     }
 
+    JButton[][] getButtons() {
+        return buttons;
+    }
+
     private JPanel setPlansza(Swiat swiat) {
         this.x = swiat.getX();
         this.y = swiat.getY();

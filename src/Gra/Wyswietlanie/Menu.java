@@ -11,6 +11,8 @@ class Menu extends JPanel {
     private JPanel menu;
     private JScrollPane scrollPane;
     private JLabel kierunek;
+    private JSpinner spinnerX;
+    private JSpinner spinnerY;
 
     Menu(Swiat swiat, Gra gra) {
         menu = new JPanel();
@@ -21,7 +23,7 @@ class Menu extends JPanel {
 
         //SPINNER X
         SpinnerModel spinnerModelX = new SpinnerNumberModel(swiat.getX(), 5, 100, 1);
-        JSpinner spinnerX = new JSpinner(spinnerModelX);
+        spinnerX = new JSpinner(spinnerModelX);
         spinnerX.addChangeListener(e -> {
             JSpinner s = (JSpinner) e.getSource();
             swiat.setX((Integer) s.getValue());
@@ -34,7 +36,7 @@ class Menu extends JPanel {
 
         //SPINNERY
         SpinnerModel spinnerModelY = new SpinnerNumberModel(swiat.getY(), 5, 100, 1);
-        JSpinner spinnerY = new JSpinner(spinnerModelY);
+        spinnerY = new JSpinner(spinnerModelY);
         Dimension spinnersize = new Dimension(50, 25);
         spinnerY.addChangeListener(e -> {
             JSpinner s = (JSpinner) e.getSource();
@@ -101,5 +103,10 @@ class Menu extends JPanel {
         JTextPane textPane = new JTextPane(document);
         textPane.setEditable(false);
         return new JScrollPane(textPane);
+    }
+
+    void setSpinners(Swiat swiat) {
+        spinnerY.setValue(swiat.getY());
+        spinnerX.setValue(swiat.getX());
     }
 }

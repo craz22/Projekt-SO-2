@@ -1,0 +1,103 @@
+14 10
+Czlowiek
+2 3 4 5 0
+BarszczSosnowskiego
+10 2 0 10 0
+BarszczSosnowskiego
+10 7 0 10 0
+BarszczSosnowskiego
+2 4 0 10 0
+BarszczSosnowskiego
+8 1 0 10 0
+BarszczSosnowskiego
+13 3 0 10 0
+Guarana
+6 4 0 0 0
+Guarana
+8 6 0 0 0
+Guarana
+10 3 0 0 0
+Guarana
+4 1 0 0 0
+Guarana
+12 2 0 0 0
+Mlecz
+8 5 0 0 0
+Mlecz
+3 1 0 0 0
+Mlecz
+10 1 0 0 0
+Mlecz
+11 9 0 0 0
+Mlecz
+5 9 0 0 0
+Trawa
+3 4 0 0 0
+Trawa
+0 4 0 0 0
+Trawa
+0 3 0 0 0
+Trawa
+1 4 0 0 0
+Trawa
+7 7 0 0 0
+WilczeJagody
+3 7 0 99 0
+WilczeJagody
+9 8 0 99 0
+WilczeJagody
+5 2 0 99 0
+WilczeJagody
+7 6 0 99 0
+WilczeJagody
+7 8 0 99 0
+Antylopa
+0 7 4 4 0
+Antylopa
+5 8 4 4 0
+Antylopa
+0 5 4 4 0
+Antylopa
+11 6 4 4 0
+Antylopa
+7 0 4 4 0
+Lis
+1 2 7 3 0
+Lis
+13 5 7 3 0
+Lis
+6 9 7 3 0
+Lis
+6 3 7 3 0
+Lis
+1 0 7 3 0
+Owca
+6 1 4 4 0
+Owca
+13 6 4 4 0
+Owca
+1 1 4 4 0
+Owca
+5 1 4 4 0
+Owca
+2 6 4 4 0
+Wilk
+0 6 5 9 0
+Wilk
+2 8 5 9 0
+Wilk
+9 2 5 9 0
+Wilk
+7 4 5 9 0
+Wilk
+4 2 5 9 0
+Zolw
+1 6 1 2 0
+Zolw
+4 8 1 2 0
+Zolw
+13 4 1 2 0
+Zolw
+8 9 1 2 0
+Zolw
+0 2 1 2 0

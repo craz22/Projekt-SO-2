@@ -5,30 +5,31 @@ import Gra.Organizmy.Rosliny.*;
 import Gra.Organizmy.Wspolrzedne;
 import Gra.Organizmy.Zwierzeta.*;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 import java.util.Collections;
 import java.util.Random;
+import java.util.Scanner;
 import java.util.Vector;
 
 public class Swiat {
     private int x, y;
     private String kierunek;
     private Vector<Organizm> organizmy = new Vector<>();
-    private Vector<Organizm> dozabicia = new Vector<>();
     private int[][] pole;
     private Czlowiek czlowiek;
     private Vector<String> komentarze = new Vector<>();
     private int licznikspecjalny;
+
     public Swiat(int x, int y) {
         this.x = x;
         this.y = y;
         pole = new int[y][x];
         this.kierunek = "prawa";
-        randOrganizm(this);
         this.licznikspecjalny = 0;
     }
-
-    //TODO zapis, odczyt
-
 
     public int getLicznikSpecjalny() {
         return licznikspecjalny;
@@ -153,7 +154,7 @@ public class Swiat {
         }
     }
 
-    private void randOrganizm(Swiat swiat) {
+    void randOrganizm(Swiat swiat) {
         pole = new int[this.y][this.x];
         for (int i = 0; i < this.y; i++) {
             for (int j = 0; j < this.x; j++) {
@@ -232,5 +233,93 @@ public class Swiat {
                 }
             }
         }
+    }
+
+    public void save() {
+        try (PrintWriter writer = new PrintWriter("save.txt", "UTF-8")) {
+            writer.println(this.x + " " + this.y);
+            for (Organizm org : organizmy) {
+                writer.println(org.getClass().getSimpleName());
+                writer.println(org.getPolozenie().getX() + " " + org.getPolozenie().getY() + " " + org.getInicjatywa() + " " + org.getSila() + " " + org.getWiek());
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public Swiat load() throws FileNotFoundException {
+        Scanner scanner = new Scanner(new File("save.txt"));
+        int x = scanner.nextInt();
+        int y = scanner.nextInt();
+        Swiat swiat = new Swiat(x, y);
+        while (scanner.hasNext()) {
+            scanner.nextLine();
+            String nazwa = scanner.nextLine();
+            int px = scanner.nextInt();
+            int py = scanner.nextInt();
+            int inicjatywa = scanner.nextInt();
+            int sila = scanner.nextInt();
+            int wiek = scanner.nextInt();
+            Organizm org;
+            switch (nazwa) {
+                case "BarszczSosnowskiego": {
+                    org = new BarszczSosnowskiego(swiat, px, py);
+                    break;
+                }
+                case "Guarana": {
+                    org = new Guarana(swiat, px, py);
+                    break;
+                }
+                case "Mlecz": {
+                    org = new Mlecz(swiat, px, py);
+                    break;
+                }
+                case "Trawa": {
+                    org = new Trawa(swiat, px, py);
+                    break;
+                }
+                case "WilczeJagody": {
+                    org = new WilczeJagody(swiat, px, py);
+                    break;
+                }
+                case "Antylopa": {
+                    org = new Antylopa(swiat, px, py);
+                    break;
+                }
+                case "Czlowiek": {
+                    org = new Czlowiek(swiat, px, py);
+                    swiat.setCzlowiek((Czlowiek) org);
+                    break;
+                }
+                case "Lis": {
+                    org = new Lis(swiat, px, py);
+                    break;
+                }
+                case "Owca": {
+                    org = new Owca(swiat, px, py);
+                    break;
+                }
+                case "Wilk": {
+                    org = new Wilk(swiat, px, py);
+                    break;
+                }
+                case "Zolw": {
+                    org = new Zolw(swiat, px, py);
+                    break;
+                }
+                default: {
+                    org = new Trawa(swiat, px, py);
+                    break;
+                }
+            }
+            org.setInicjatywa(inicjatywa);
+            org.setSila(sila);
+            org.setWiek(wiek);
+            swiat.addOrganizm(org);
+        }
+        return swiat;
     }
 }

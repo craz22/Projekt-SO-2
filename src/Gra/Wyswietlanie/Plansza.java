@@ -49,6 +49,7 @@ class Plansza extends JPanel {
             for (int j = 0; j < x; j++) {
                 if (swiat.getOrganizm(i, j) == null) {
                     buttons[i][j].setText("");
+                    buttons[i][j].setBackground(Color.white);
                 } else {
                     buttons[i][j].setText(swiat.getOrganizm(i, j).Rysuj());
                     buttons[i][j].setBackground(swiat.getOrganizm(i, j).getColor());

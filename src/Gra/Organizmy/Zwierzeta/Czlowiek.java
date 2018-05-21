@@ -34,7 +34,74 @@ public class Czlowiek implements Zwierze {
 
     @Override
     public void Akcja(Swiat swiat) {
-        //TODO
+        //jesli jest umiejetnosc specjalna
+        int px = 0, py = 0;
+        if (swiat.getLicznikSpecjalny() > 0 && swiat.getLicznikSpecjalny() < 6) {
+            switch (swiat.getKierunek()) {
+                case "lewa": {
+                    if (getPolozenie().getX() > 2) {
+                        px = -2;
+                    } else if (getPolozenie().getX() == 1) {
+                        px = -1;
+                    }
+                    break;
+                }
+                case "prawa": {
+                    if (getPolozenie().getX() <= swiat.getX() - 3) {
+                        px = 2;
+                    } else if (getPolozenie().getX() == swiat.getX() - 2) {
+                        px = 1;
+                    }
+                    break;
+                }
+                case "gora": {
+                    if (getPolozenie().getY() >= 2) {
+                        py = -2;
+                    } else if (getPolozenie().getY() == 1) {
+                        py = -1;
+                    }
+                    break;
+                }
+                case "dol": {
+                    if (getPolozenie().getY() <= swiat.getY() - 3) {
+                        py = 2;
+                    } else if (getPolozenie().getY() == swiat.getY() - 2) {
+                        py = 1;
+                    }
+                    break;
+                }
+            }
+        } else {
+            switch (swiat.getKierunek()) {
+                case "lewa": {
+                    if (getPolozenie().getX() >= 1) {
+                        px = -1;
+                    }
+                    break;
+                }
+                case "prawa": {
+                    if (getPolozenie().getX() <= swiat.getX() - 2) {
+                        px = 1;
+                    }
+                    break;
+                }
+                case "gora": {
+                    if (getPolozenie().getY() >= 1) {
+                        py = -1;
+                    }
+                    break;
+                }
+                case "dol": {
+                    if (getPolozenie().getY() <= swiat.getY() - 2) {
+                        py = 1;
+                    }
+                    break;
+                }
+            }
+        }
+        py += getPolozenie().getY();
+        px += getPolozenie().getX();
+        swiat.moveOrganizm(this, py, px);
     }
 
     @Override

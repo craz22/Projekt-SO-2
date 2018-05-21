@@ -4,24 +4,34 @@ import Gra.Swiat;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-public class Gra extends JFrame implements KeyListener {
+public class Gra extends JFrame implements ActionListener, KeyListener {
     private Plansza plansza;
     private Menu menu;
     private Swiat swiat;
-
+    private JButton tura;
+    private JButton umiejetnosc;
     public Gra(Swiat swiat) {
         super("Gerard Wiśniewski s174297");
         this.swiat = swiat;
-        addKeyListener(this);
-        setFocusable(true);
-        setFocusTraversalKeysEnabled(false);
         BorderLayout borderLayout = new BorderLayout(7, 0);
         setLayout(borderLayout);
+        setFocusable(true);
+        addKeyListener(this);
         plansza = new Plansza(swiat, this, swiat.getX(), swiat.getY());
-
+        tura = new JButton("Tura");
+        tura.addActionListener(this);
+        tura.setFocusable(false);
+        umiejetnosc = new JButton("Umiejetnosc specjalna");
+        umiejetnosc.addActionListener(this);
+        umiejetnosc.setFocusable(false);
+        JPanel south = new JPanel();
+        south.add(tura);
+        south.add(umiejetnosc);
         menu = new Menu(swiat, this);
         Dimension rozmiarMenu = new Dimension(250, getHeight());
         menu.getPanel().setPreferredSize(rozmiarMenu);
@@ -29,6 +39,7 @@ public class Gra extends JFrame implements KeyListener {
 
         add(menu.getPanel(), BorderLayout.EAST);
         add(plansza.getPanel(), BorderLayout.CENTER);
+        add(south, BorderLayout.SOUTH);
         plansza.RysujPlansze(swiat);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setSize(500, 500);
@@ -46,8 +57,16 @@ public class Gra extends JFrame implements KeyListener {
         repaint();
     }
 
-    void wypiszKomentarze(Swiat swiat) {
-        this.menu.setKomentarze(swiat);
+    private void setPlansza(Swiat swiat) {
+        plansza.RysujPlansze(swiat);
+        revalidate();
+        repaint();
+    }
+
+    private void wypiszKomentarze(Swiat swiat) {
+        remove(menu.getPanel());
+        this.menu = new Menu(swiat, this);
+        add(menu.getPanel(), BorderLayout.EAST);
         revalidate();
         repaint();
     }
@@ -102,5 +121,19 @@ public class Gra extends JFrame implements KeyListener {
     @Override
     public void keyReleased(KeyEvent e) {
 
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        Object source = e.getSource();
+        if (source == tura) {
+            swiat.wykonajTure();
+            wypiszKomentarze(swiat);
+            setPlansza(swiat);
+        } else if (source == umiejetnosc) {
+            if (swiat.getLicznikSpecjalny() == 0) {
+                swiat.setLicznikSpecjalny(swiat.getLicznikSpecjalny() + 1);
+            }
+        }
     }
 }

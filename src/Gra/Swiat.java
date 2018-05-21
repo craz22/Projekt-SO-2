@@ -13,19 +13,30 @@ public class Swiat {
     private int x, y;
     private String kierunek;
     private Vector<Organizm> organizmy = new Vector<>();
+    private Vector<Organizm> dozabicia = new Vector<>();
     private int[][] pole;
     private Czlowiek czlowiek;
     private Vector<String> komentarze = new Vector<>();
-
+    private int licznikspecjalny;
     public Swiat(int x, int y) {
         this.x = x;
         this.y = y;
         pole = new int[y][x];
         this.kierunek = "prawa";
         randOrganizm(this);
+        this.licznikspecjalny = 0;
     }
 
-    //TODO czlowiek umiejetnosc specjalna, czlowiek poruasznie sie, przeprowadzanie tur, sprawdzenie czy wszedzie sa komentarze
+    //TODO zapis, odczyt
+
+
+    public int getLicznikSpecjalny() {
+        return licznikspecjalny;
+    }
+
+    public void setLicznikSpecjalny(int licznikspecjalny) {
+        this.licznikspecjalny = licznikspecjalny;
+    }
 
     public Czlowiek getCzlowiek() {
         return czlowiek;
@@ -85,7 +96,7 @@ public class Swiat {
 
     public Organizm getOrganizm(int y, int x) {
         for (Organizm org : organizmy) {
-            if (org.getPolozenie().getY() == y && org.getPolozenie().getX() == x) {
+            if (org.getPolozenie().getY() == y && org.getPolozenie().getX() == x && org.getInicjatywa() != -1) {
                 return org;
             }
         }
@@ -114,18 +125,31 @@ public class Swiat {
                             Collections.swap(organizmy, j - 1, j);
                     }
         }
+        int i = organizmy.size();
+        while (organizmy.lastElement().getInicjatywa() == -1) {
+            organizmy.remove(i - 1);
+            i--;
+        }
     }
 
     public void zabij(Organizm org) {
-        organizmy.remove(org);
+        org.setInicjatywa(-1);
         setPole(org.getPolozenie().getY(), org.getPolozenie().getX(), 0);
     }
 
     public void wykonajTure() {
+        komentarze.removeAllElements();
         sortujOrganizmy();
-        for (Organizm org : organizmy) {
-            org.setWiek(org.getWiek() + 1);
-            org.Akcja(this);
+        int temp = organizmy.size();
+        for (int i = 0; i < temp; i++) {
+            organizmy.elementAt(i).setWiek(organizmy.elementAt(i).getWiek() + 1);
+            organizmy.elementAt(i).Akcja(this);
+        }
+        if (licznikspecjalny > 0) {
+            licznikspecjalny++;
+        }
+        if (licznikspecjalny == 10) {
+            licznikspecjalny = 0;
         }
     }
 

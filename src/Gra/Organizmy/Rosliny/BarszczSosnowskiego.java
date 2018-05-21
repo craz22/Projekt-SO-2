@@ -44,14 +44,16 @@ public class BarszczSosnowskiego implements Roslina {
                         //jesli jest zwierzeciem
                         Class<?> interf = Zwierze.class;
 
-                        Class<?> obj = swiat.getOrganizm(getPolozenie().getY() + 1 - i,
-                                getPolozenie().getX() + 1 - j)
-                                .getClass();
+                        if (swiat.getOrganizm(getPolozenie().getY() + 1 - i, getPolozenie().getX() + 1 - j) != null) {
+                            Class<?> obj = swiat.getOrganizm(getPolozenie().getY() + 1 - i,
+                                    getPolozenie().getX() + 1 - j)
+                                    .getClass();
 
-                        if (interf.isAssignableFrom(obj)) {
-                            tablica.add(new Wspolrzedne(getPolozenie().getX() + 1 - j,
-                                    getPolozenie().getY() + 1 - i)
-                            );
+                            if (interf.isAssignableFrom(obj)) {
+                                tablica.add(new Wspolrzedne(getPolozenie().getX() + 1 - j,
+                                        getPolozenie().getY() + 1 - i)
+                                );
+                            }
                         }
                     }
                 }

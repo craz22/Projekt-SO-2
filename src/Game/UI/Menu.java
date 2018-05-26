@@ -1,47 +1,45 @@
-package Gra.Wyswietlanie;
+package Game.UI;
 
-import Gra.Swiat;
+import Game.World;
 
 import javax.swing.*;
 import javax.swing.text.*;
 import java.awt.*;
 
 class Menu extends JPanel {
-    private int y;
-    private JPanel menu;
-    private JScrollPane scrollPane;
-    private JLabel kierunek;
-    private JSpinner spinnerX;
-    private JSpinner spinnerY;
+    private final JPanel menu;
+    private final JLabel direction;
+    private final JSpinner spinnerX;
+    private final JSpinner spinnerY;
 
-    Menu(Swiat swiat, Gra gra) {
+    Menu(World world, Game game) {
         menu = new JPanel();
         menu.setBorder(BorderFactory.createTitledBorder("Menu"));
         menu.setLayout(new BoxLayout(menu, BoxLayout.Y_AXIS));
-        JLabel rozmiar = new JLabel("Rozmiar");
-        rozmiar.setAlignmentX(CENTER_ALIGNMENT);
+        JLabel size = new JLabel("Size");
+        size.setAlignmentX(CENTER_ALIGNMENT);
 
         //SPINNER X
-        SpinnerModel spinnerModelX = new SpinnerNumberModel(swiat.getX(), 5, 100, 1);
+        SpinnerModel spinnerModelX = new SpinnerNumberModel(world.getX(), 5, 100, 1);
         spinnerX = new JSpinner(spinnerModelX);
         spinnerX.addChangeListener(e -> {
             JSpinner s = (JSpinner) e.getSource();
-            swiat.setX((Integer) s.getValue());
-            gra.newPlansza(swiat);
+            world.setX((Integer) s.getValue());
+            game.newBoard(world);
         });
 
 
         JLabel x = new JLabel("X");
         x.setAlignmentX(CENTER_ALIGNMENT);
 
-        //SPINNERY
-        SpinnerModel spinnerModelY = new SpinnerNumberModel(swiat.getY(), 5, 100, 1);
+        //Spinners
+        SpinnerModel spinnerModelY = new SpinnerNumberModel(world.getY(), 5, 100, 1);
         spinnerY = new JSpinner(spinnerModelY);
         Dimension spinnersize = new Dimension(50, 25);
         spinnerY.addChangeListener(e -> {
             JSpinner s = (JSpinner) e.getSource();
-            swiat.setY((Integer) s.getValue());
-            gra.newPlansza(swiat);
+            world.setY((Integer) s.getValue());
+            game.newBoard(world);
         });
         spinnerX.setPreferredSize(spinnersize);
         spinnerX.setMinimumSize(spinnersize);
@@ -50,35 +48,31 @@ class Menu extends JPanel {
         spinnerY.setMinimumSize(spinnersize);
         spinnerY.setMaximumSize(spinnersize);
 
-        //Komentarze
-        scrollPane = WypiszKomentarze(swiat);
+        //comments
+        JScrollPane scrollPane = writeComments(world);
 
-        JLabel kierunekLabael = new JLabel("Kierunek:");
-        kierunekLabael.setAlignmentX(CENTER_ALIGNMENT);
-        kierunek = new JLabel(swiat.getKierunek());
-        kierunek.setAlignmentX(CENTER_ALIGNMENT);
-        menu.add(rozmiar);
+        JLabel directionlabel = new JLabel("Direction:");
+        directionlabel.setAlignmentX(CENTER_ALIGNMENT);
+        direction = new JLabel(world.getDirection());
+        direction.setAlignmentX(CENTER_ALIGNMENT);
+        menu.add(size);
         menu.add(spinnerX);
         menu.add(x);
         menu.add(spinnerY);
-        menu.add(kierunekLabael);
-        menu.add(kierunek);
+        menu.add(directionlabel);
+        menu.add(direction);
         menu.add(scrollPane);
     }
 
-    void setKierunek(Swiat swiat) {
-        this.kierunek.setText(swiat.getKierunek());
+    void setDirection(World world) {
+        this.direction.setText(world.getDirection());
     }
 
     JPanel getPanel() {
         return menu;
     }
 
-    void setKomentarze(Swiat swiat) {
-        this.scrollPane = WypiszKomentarze(swiat);
-    }
-
-    private JScrollPane WypiszKomentarze(Swiat swiat) {
+    private JScrollPane writeComments(World world) {
         StyleContext context = new StyleContext();
         StyledDocument document = new DefaultStyledDocument(context);
 
@@ -91,10 +85,10 @@ class Menu extends JPanel {
         SimpleAttributeSet attributes = new SimpleAttributeSet();
         StyleConstants.setBold(attributes, true);
         StyleConstants.setItalic(attributes, true);
-        if (!swiat.getKomentarze().isEmpty()) {
-            for (String komentarz : swiat.getKomentarze()) {
+        if (!world.getComments().isEmpty()) {
+            for (String comment : world.getComments()) {
                 try {
-                    document.insertString(document.getLength(), komentarz + "\n", attributes);
+                    document.insertString(document.getLength(), comment + "\n", attributes);
                 } catch (BadLocationException e) {
                     e.printStackTrace();
                 }
@@ -105,8 +99,8 @@ class Menu extends JPanel {
         return new JScrollPane(textPane);
     }
 
-    void setSpinners(Swiat swiat) {
-        spinnerY.setValue(swiat.getY());
-        spinnerX.setValue(swiat.getX());
+    void setSpinners(World world) {
+        spinnerY.setValue(world.getY());
+        spinnerX.setValue(world.getX());
     }
 }
